@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Let's start</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div style="text-align: center">
+    <form method="get" action="/returnWords">
+        <input type="number" name="number" placeholder="Number of Words"/>
+        <input type="text" name="word" placeholder="Word"/>
+        <button type="submit">Find Words</button>
+        <p/>
+        {{#words}}
+            <div>
+                <b>{{label}}</b>
+            </div>
+        {{/words}}
+    </form>
+</div>
+
+
+</body>
+</html>
