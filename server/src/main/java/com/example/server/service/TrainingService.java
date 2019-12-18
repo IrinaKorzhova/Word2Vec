@@ -8,11 +8,13 @@ import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
+import org.nd4j.linalg.io.ClassPathResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,10 +24,10 @@ public class TrainingService {
 
     private static Word2Vec vec;
 
-    public static void trainNetwork() throws FileNotFoundException {
+    public static void trainNetwork() throws IOException {
         logger.info("Load & Vectorize Sentences....");
         // Strip white space before and after for each line
-        SentenceIterator iter = new BasicLineIterator("D:/projects/ServerClient/server/src/main/resources/raw_sentences.txt");
+        SentenceIterator iter = new BasicLineIterator(new ClassPathResource("raw_sentences.txt").getFile());
         // Split on white spaces in the line to get words
         TokenizerFactory t = new DefaultTokenizerFactory();
 
@@ -46,7 +48,6 @@ public class TrainingService {
 
         logger.info("Writing word vectors to text file....");
 
-        // Prints out the closest 10 words to "day". An example on what to do with these Word Vectors.
         logger.info("Closest Words:");
     }
 
