@@ -45,10 +45,10 @@ public class ServerApplication {
                         request = reader.readLine();
                         Info info = gson.fromJson(request,Info.class);
                         List<Word> wordList = TrainingService.returnWords(info);
-                        try {
-                            Thread.sleep(4000);
-                        } catch (InterruptedException e) {
-                        }
+//                        try {
+//                            Thread.sleep(4000);
+//                        } catch (InterruptedException e) {
+//                        }
                         writer.write(gson.toJson(wordList));
                         writer.newLine();
                         writer.flush();

@@ -42,6 +42,7 @@ public class TrainingService {
                 .windowSize(5)
                 .iterate(iter)
                 .tokenizerFactory(t)
+
                 .build();
         logger.info("Fitting Word2Vec model....");
         vec.fit();
@@ -52,6 +53,6 @@ public class TrainingService {
     }
 
     public static List<Word> returnWords(Info info) {
-        return vec.wordsNearestSum(info.getWord(), info.getNumber()).stream().map(item -> new Word(item + " " + info.getWord())).collect(Collectors.toList());
+        return vec.wordsNearestSum(info.getWord(), info.getNumber()).stream().map(item -> new Word(info.getWord()+" "+item)).collect(Collectors.toList());
     }
 }
